@@ -20,4 +20,5 @@ Why are extra lines worth long-term maintenance cost?
 ## Validation
 
 - [ ] Tests or manual validation added
-- [ ] Repro steps and evidence included
+- [ ] Explanation of how it was re-produced locally
+- [ ] Repro steps and evidence included (screenshots or sanitized requests/response payloads for both before and after)
