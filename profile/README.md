@@ -1,12 +1,23 @@
-## Hi there 👋
+# Silkie Tools
 
-<!--
+Tech behind [silkie.tools](https://silkie.tools/) for SMB retail execution.
 
-**Here are some ideas to get you started:**
+## Build Focus
 
-🙋‍♀️ A short introduction - what is your organization all about?
-🌈 Contribution guidelines - how can the community get involved?
-👩‍💻 Useful resources - where can the community find your docs? Is there anything else the community should know?
-🍿 Fun facts - what does your team eat for breakfast?
-🧙 Remember, you can do mighty things with the power of [Markdown](https://docs.github.com/github/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax)
--->
+- Retail product intelligence pipelines (catalog, pricing, availability)
+- SDKs and scrapers for supplier and marketplace data collection
+- Compute workflows for ingestion, normalization, and analysis
+- Internal tooling to reduce manual operations overhead
+
+## Engineering Defaults
+
+- Clarity over cleverness
+- No dead code
+- New lines must justify long-term liability
+- Explicit names and predictable control flow
+
+## Public Repositories
+
+- [`demo-compute-modules-scraper-milwaukee-ts`](https://github.com/silkietools/demo-compute-modules-scraper-milwaukee-ts): TypeScript scraper demo
+- [`demo-palantir-compute-modules-js`](https://github.com/silkietools/demo-palantir-compute-modules-js): JavaScript compute modules demo
+- [`.github`](https://github.com/silkietools/.github): Organization defaults and templates

@@ -1,0 +1,41 @@
+name: Feature request
+description: Propose a new capability or improvement
+title: "[feature] "
+labels:
+  - enhancement
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem statement
+      description: What fails today?
+      placeholder: Clear user or business pain
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Functional proposal
+      description: Expected behavior
+      placeholder: Input -> decision -> output
+    validations:
+      required: true
+  - type: textarea
+    id: liability
+    attributes:
+      label: Code liability justification
+      description: Why are extra lines worth long-term maintenance cost?
+      placeholder: Value gained vs maintenance liability
+    validations:
+      required: true
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered
+      placeholder: Simpler options rejected and why
+  - type: textarea
+    id: impact
+    attributes:
+      label: Expected impact
+      description: Reliability, cost, speed, productivity
+      placeholder: Expected outcomes and tradeoffs
