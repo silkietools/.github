@@ -13,6 +13,8 @@ Use metadata-first discovery instead of README front matter contracts.
 - Policy config: `config/repo-metadata-policy.json`
 - Automated audit: `scripts/repo_metadata_audit.py`
 - CI workflow: `.github/workflows/repo-metadata-audit.yml`
+- Security baseline enforcer: `scripts/enforce_security_baseline.py`
+- Security workflow: `.github/workflows/security-baseline-enforcer.yml`
 
 This is intentionally config-driven so the same repo structure can be copied to other orgs.
 
@@ -27,8 +29,10 @@ Default policy in this repo:
 
 - Org profile: `profile/README.md`
 - Discovery checklist: `docs/shpit-discovery-checklist.md`
+- Security baseline docs: `docs/security-baseline-enforcer.md`
 - Metadata policy config: `config/repo-metadata-policy.json`
 - Metadata audit script + tests: `scripts/repo_metadata_audit.py`, `scripts/tests/test_repo_metadata_audit.py`
+- Security baseline script + tests: `scripts/enforce_security_baseline.py`, `scripts/tests/test_enforce_security_baseline.py`
 - Default docs: contribution, security, support, conduct
 - Default templates: issue + pull request
 
@@ -38,6 +42,17 @@ Default policy in this repo:
 2. Update `config/repo-metadata-policy.json` for that org's required topics/labels and exclusions.
 3. Run the workflow manually in `.github/workflows/repo-metadata-audit.yml` with target org + visibility.
 4. Fix reported repos until the audit passes.
+
+## Security Baseline Automation
+
+- Dependabot vulnerability alerts: enforced
+- Dependabot security updates: enforced
+- Secret scanning + push protection: enforced
+- CodeQL default setup: enforced
+
+Use `.github/workflows/security-baseline-enforcer.yml`.
+
+This workflow requires an org/repo secret named `ORG_ADMIN_TOKEN` with permissions to administer repositories across the org.
 
 ## Testing and CI
 
