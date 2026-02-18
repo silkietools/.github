@@ -1,6 +1,8 @@
-# Security Baseline Enforcer
+# Security Baseline Template
 
-Automated org-wide security baseline:
+Use this for any new org to avoid per-repo manual setup.
+
+## Baseline Controls
 
 - Dependabot vulnerability alerts
 - Dependabot security updates
@@ -9,22 +11,45 @@ Automated org-wide security baseline:
 - Secret scanning non-provider patterns
 - CodeQL default setup
 
-## Files
+## New Org Setup (Automatic For New Repos)
 
-- Script: `scripts/enforce_security_baseline.py`
-- Workflow job: `.github/workflows/repo-metadata-audit.yml` (`enforce-security`)
+1. List available org security configurations:
 
-## Local Run
+```bash
+gh api orgs/<org>/code-security/configurations -H 'Accept: application/vnd.github+json'
+```
+
+2. Set the chosen configuration as default for new repos:
+
+```bash
+gh api -X PUT orgs/<org>/code-security/configurations/<config_id>/defaults \
+  -H 'Accept: application/vnd.github+json' \
+  -f default_for_new_repos=all
+```
+
+3. Verify defaults:
+
+```bash
+gh api orgs/<org>/code-security/configurations/defaults -H 'Accept: application/vnd.github+json'
+```
+
+## Existing Repo Backfill (One-Time / Manual)
+
+Use the local script:
 
 ```bash
 python3 scripts/enforce_security_baseline.py \
-  --org silkietools \
+  --org <org> \
   --visibility all \
   --exclude .github \
   --output-json /tmp/security-baseline-report.json \
   --strict
 ```
 
-## Workflow Secret
+No repo-stored org admin token is required for this model; run it from a trusted local admin session when needed.
 
-Set `ORG_ADMIN_TOKEN` in the `.github` repository (or org-level actions secrets) with permissions that can administer all target repositories.
+## Plan / Licensing Notes
+
+- Public repositories: baseline security features are generally available without paid add-ons.
+- Private/internal repositories: code scanning and advanced secret scanning protections require paid GitHub security licensing (GitHub Code Security / GitHub Secret Protection, formerly GHAS entitlements).
+- Team plan alone does not automatically grant all private-repo advanced security features.

@@ -14,7 +14,7 @@ Use metadata-first discovery instead of README front matter contracts.
 - Automated audit: `scripts/repo_metadata_audit.py`
 - CI workflow: `.github/workflows/repo-metadata-audit.yml`
 - Security baseline enforcer: `scripts/enforce_security_baseline.py`
-- Security workflow job: `.github/workflows/repo-metadata-audit.yml` (`enforce-security`)
+- Security baseline template: `docs/security-baseline-enforcer.md`
 
 This is intentionally config-driven so the same repo structure can be copied to other orgs.
 
@@ -43,16 +43,15 @@ Default policy in this repo:
 3. Run the workflow manually in `.github/workflows/repo-metadata-audit.yml` with target org + visibility.
 4. Fix reported repos until the audit passes.
 
-## Security Baseline Automation
+## Security Baseline Template
 
 - Dependabot vulnerability alerts: enforced
 - Dependabot security updates: enforced
 - Secret scanning + push protection: enforced
 - CodeQL default setup: enforced
 
-Use `.github/workflows/repo-metadata-audit.yml` (`enforce-security` job).
-
-This workflow requires an org/repo secret named `ORG_ADMIN_TOKEN` with permissions to administer repositories across the org.
+Use org-level Code Security Configuration defaults for automatic new-repo inheritance.
+Use `scripts/enforce_security_baseline.py` only for one-time backfill or manual drift correction.
 
 ## Testing and CI
 
