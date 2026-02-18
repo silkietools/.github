@@ -1,0 +1,59 @@
+name: Repo Metadata Audit
+
+on:
+  workflow_dispatch:
+    inputs:
+      org:
+        description: "Organization login to audit"
+        required: false
+        default: "silkietools"
+      visibility:
+        description: "Repos to audit (public/private/all)"
+        required: false
+        default: "all"
+  schedule:
+    - cron: "17 6 * * 1"
+
+permissions:
+  contents: read
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    env:
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Run unit tests
+        run: python3 -m unittest discover -s scripts/tests -p "test_*.py"
+
+      - name: Audit repository metadata
+        run: |
+          ORG_INPUT="${{ github.event.inputs.org }}"
+          if [ -z "${ORG_INPUT}" ]; then
+            ORG_INPUT="${{ github.repository_owner }}"
+          fi
+
+          VIS_INPUT="${{ github.event.inputs.visibility }}"
+          if [ -z "${VIS_INPUT}" ]; then
+            if [ "${{ github.event_name }}" = "schedule" ]; then
+              VIS_INPUT="public"
+            else
+              VIS_INPUT="all"
+            fi
+          fi
+
+          python3 scripts/repo_metadata_audit.py \
+            --org "${ORG_INPUT}" \
+            --visibility "${VIS_INPUT}" \
+            --policy config/repo-metadata-policy.json \
+            --output-json metadata-audit-report.json
+
+      - name: Upload audit artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: metadata-audit-report
+          path: metadata-audit-report.json

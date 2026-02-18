@@ -1,43 +1,53 @@
-# Silkie Tools Org Defaults
+# Org Defaults Template
 
-Org-wide defaults for `silkietools` repositories.
+Org-level defaults repo for contribution/security/support docs, issue/PR templates, and metadata quality automation.
 
 [![YouTube Walkthrough](https://img.shields.io/badge/YouTube-Watch%20walkthrough-FF0000?logo=youtube&logoColor=white)](https://www.youtube.com/watch?v=XWWyVmvqBJ8)
 [![shpit.dev Tutorials](https://img.shields.io/badge/shpit.dev-More%20tutorials-0A66C2?logo=googlechrome&logoColor=white)](https://www.shpit.dev/)
 
-## Mission
-
-Build tech behind [silkie.tools](https://silkie.tools/) so SMB retail teams can run faster in thin-margin markets.
-
-## Multi-Org Content Discovery (for shpit.dev)
+## Discovery Model
 
 Use metadata-first discovery instead of README front matter contracts.
 
-- Spec/checklist: `docs/shpit-discovery-checklist.md`
-- Include rule: repo topic/tag contains `shpit`
-- Description source: GitHub repo description (README can enrich content)
-- Language source: GitHub primary language metadata
-- README quality workflow: `readme-maintainer` skill
+- Checklist: `docs/shpit-discovery-checklist.md`
+- Policy config: `config/repo-metadata-policy.json`
+- Automated audit: `scripts/repo_metadata_audit.py`
+- CI workflow: `.github/workflows/repo-metadata-audit.yml`
+
+This is intentionally config-driven so the same repo structure can be copied to other orgs.
+
+Default policy in this repo:
+
+- Public repos: enforce a minimal README structure (title, badge presence, key sections).
+- Public repos: `shpit` topic/label are warning-only discovery hints (non-blocking).
+- Keep deeper content semantics (exact topic taxonomy and label taxonomy) as manual curation.
 
 ## Contains
 
 - Org profile: `profile/README.md`
-- Content discovery checklist: `docs/shpit-discovery-checklist.md`
+- Discovery checklist: `docs/shpit-discovery-checklist.md`
+- Metadata policy config: `config/repo-metadata-policy.json`
+- Metadata audit script + tests: `scripts/repo_metadata_audit.py`, `scripts/tests/test_repo_metadata_audit.py`
 - Default docs: contribution, security, support, conduct
 - Default templates: issue + pull request
+
+## Reuse In Another Org
+
+1. Clone/copy this `.github` repository into the target org.
+2. Update `config/repo-metadata-policy.json` for that org's required topics/labels and exclusions.
+3. Run the workflow manually in `.github/workflows/repo-metadata-audit.yml` with target org + visibility.
+4. Fix reported repos until the audit passes.
 
 ## Testing and CI
 
 | Layer | Present | Tooling | Runs in CI |
 |---|---|---|---|
-| unit | no | none | no |
+| unit | yes | `unittest` (Python stdlib) | yes |
 | integration | no | none | no |
 | e2e api | no | none | no |
 | e2e web | no | none | no |
 
-No CI configuration is defined in this repository.
-
 ## Notes
 
-- No runtime code
-- Purpose: shared standards, not app logic
+- No application runtime code
+- Purpose: shared standards and enforceable metadata quality
