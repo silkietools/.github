@@ -12,7 +12,7 @@ Automated org-wide security baseline:
 ## Files
 
 - Script: `scripts/enforce_security_baseline.py`
-- Workflow: `.github/workflows/security-baseline-enforcer.yml`
+- Workflow job: `.github/workflows/repo-metadata-audit.yml` (`enforce-security`)
 
 ## Local Run
 
