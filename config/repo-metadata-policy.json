@@ -8,6 +8,7 @@
   "required_readme": false,
   "required_topics": [],
   "required_labels": [],
+  "public_min_topics": 3,
   "public_required_topics": [],
   "public_required_labels": [],
   "public_warn_topics": [

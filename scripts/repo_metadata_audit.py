@@ -271,6 +271,10 @@ def evaluate_repo(
         if topic not in record.topics:
             violations.append(f"missing_topic:{topic}")
 
+    public_min_topics = int(policy.get("public_min_topics", 0) or 0)
+    if not record.is_private and public_min_topics > 0 and len(record.topics) < public_min_topics:
+        violations.append(f"public_topics_below_min:{len(record.topics)}<{public_min_topics}")
+
     for topic in sorted(set(warn_topics)):
         if topic not in record.topics:
             warnings.append(f"missing_topic_warning:{topic}")

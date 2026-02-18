@@ -19,6 +19,7 @@ This is intentionally config-driven so the same repo structure can be copied to 
 Default policy in this repo:
 
 - Public repos: enforce a minimal README structure (title, badge presence, key sections).
+- Public repos: require at least 3 topics.
 - Public repos: `shpit` topic/label are warning-only discovery hints (non-blocking).
 - Keep deeper content semantics (exact topic taxonomy and label taxonomy) as manual curation.
 

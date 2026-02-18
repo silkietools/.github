@@ -10,6 +10,7 @@ Automated policy checks for org repositories live in:
 
 - Public repo README exists
 - Public repo README has a minimal structure (title, at least one badge, key sections)
+- Public repos have at least 3 topics
 - Optional discovery hints as warnings (default: missing `shpit` topic/label)
 
 ## Local Usage
@@ -35,6 +36,7 @@ python3 scripts/repo_metadata_audit.py \
   "required_readme": false,
   "required_topics": [],
   "required_labels": [],
+  "public_min_topics": 3,
   "public_required_topics": [],
   "public_required_labels": [],
   "public_warn_topics": ["shpit"],

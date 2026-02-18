@@ -16,6 +16,7 @@ class RepoMetadataAuditTests(unittest.TestCase):
             "required_readme": False,
             "required_topics": [],
             "required_labels": [],
+            "public_min_topics": 3,
             "public_required_readme": True,
             "public_warn_topics": ["shpit"],
             "public_readme_minimum": {
@@ -69,6 +70,33 @@ class RepoMetadataAuditTests(unittest.TestCase):
 
     def test_compliant_public_repo_passes(self) -> None:
         record = RepoRecord("demo", False, "", "https://example.com/demo", ["shpit"])
+        readme = "\n".join(
+            [
+                "# Demo",
+                "[![Node](https://img.shields.io/badge/Node-20-blue)](https://nodejs.org/)",
+                "## What it does",
+                "## Quick Start",
+                "## Testing and CI",
+            ]
+        )
+        result = evaluate_repo(
+            record=record,
+            labels=["bug"],
+            readme_present=True,
+            readme_text=readme,
+            policy=self.policy,
+        )
+        self.assertFalse(result.compliant)
+        self.assertIn("public_topics_below_min:1<3", result.violations)
+
+    def test_public_repo_with_three_topics_passes_min_topic_rule(self) -> None:
+        record = RepoRecord(
+            "demo",
+            False,
+            "",
+            "https://example.com/demo",
+            ["shpit", "demo", "template"],
+        )
         readme = "\n".join(
             [
                 "# Demo",
