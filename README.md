@@ -9,20 +9,20 @@ Org-wide defaults for `silkietools` repositories.
 
 Build tech behind [silkie.tools](https://silkie.tools/) so SMB retail teams can run faster in thin-margin markets.
 
-## Multi-Org Featured Content Contract (for shpit.dev)
+## Multi-Org Content Discovery (for shpit.dev)
 
-Use this contract to ingest content from many orgs and include only featured repos based on README front matter.
+Use metadata-first discovery instead of README front matter contracts.
 
-- Spec: `docs/shpit-content-contract.md`
-- Parser target: root `README.md` front matter in each repo
-- Include rule: `shpit.include: true`
-- Featured rule: `shpit.featured: true`
-- Display description source: `shpit.display.description` (fallback to GitHub repo description)
+- Spec/checklist: `docs/shpit-discovery-checklist.md`
+- Include rule: repo topic/tag contains `shpit`
+- Description source: GitHub repo description (README can enrich content)
+- Language source: GitHub primary language metadata
+- README quality workflow: `readme-maintainer` skill
 
 ## Contains
 
 - Org profile: `profile/README.md`
-- Content import contract: `docs/shpit-content-contract.md`
+- Content discovery checklist: `docs/shpit-discovery-checklist.md`
 - Default docs: contribution, security, support, conduct
 - Default templates: issue + pull request
 

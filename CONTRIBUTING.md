@@ -24,7 +24,7 @@ Goal: readable, maintainable, explainable code.
 - Validation or test evidence
 
 ## AI usage
-- emojis == ban (emoticons are fine)
-- make me read too much == ban
-- writing complete sentences == ban
-- docstrings that explain a code signature when anyone can read the fucking method == ban
+- emojis == straight to jail (emoticons are fine)
+- make me read too much == straight to jail
+- writing complete sentences == straight to jail
+- docstrings that explain a code signature when anyone can read the fucking method == straight to jail
